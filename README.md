@@ -21,54 +21,24 @@ protein-ligand-interaction-dataset-pipeline
 │   │   └── referencePaper/ 
 │   │
 │   ├── interim/                  # Intermediate outputs from pipeline steps
-│   │   ├── split_cif_chains/
-│   │   ├── fasta_sequences/
-│   │   ├── filtered_datasets/    # Filtered CSV/XLSX outputs
-│   │   └── interaction_details_csv_cif/
-│   │
-│   └── processed/
-│       ├── binary_interactions_csv/
-│       ├── esm_embeddings/                # Final ML-ready datasets
-│       └── mordred_descriptors/
+│   │   
+│   └── processed/                 # Final datasets
 │
 ├── src/                          # Source code
-│   ├── pipeline/                 # Stepwise scripts organized by pipeline steps
-│   │   ├── 01_pdb_download/
-│   │   ├── 02_cif_protein_chain_and_ligand_extraction/
-│   │   ├── 03_filtering/
-│   │   ├── 04_expand_filter_merge_ligand_data/
-│   │   ├── 05_filter_cif_fasta_by_ligands/
-│   │   ├── 06_interaction/
-│   │   ├── 07_embeddings_ESM2/
-│   │   ├── uniprot_mappings/
-│   │   ├── covalent_bonds/
-│   │   └── binding_affinity/
+│   ├── data/                 # Scripts for data exploration and preparation
 │   │
-│   ├── features/                    # Code for embeddings/descriptors
-│   │   ├── esm_embeddings.py
-│   │   └── mordred_descriptors.py                 
+│   ├── models/               # Code for models        
 │   │
-│   └── config.py                 # Global configuration and parameters
+│   └── evaluation.py         # Code for model evaluation
 │
-├── pipelines/                    # Scripts to run full or partial pipelines
-│   ├── run_dataset_pipeline.py
-│   ├── run_embedding_pipeline.py
-│   └── run_full_pipeline.py                  
-│
-├── models/                       # Saved ML models (future work)
+├── run_all/                    # Scripts to run full or partial pipelines          
 │
 ├── notebooks/                     # Jupyter notebooks for EDA or visualization
-│   ├── exploratory_analysis.ipynb
-│   └── dataset_statistics.ipynb
+│   └── dataset_description.ipynb   #Description of the several raw data
 │
 ├── results/                       # Generated results like tables and figures
 │   ├── tables/
+│   ├── reports/
 │   └── figures/
 │
-├── tests/                         # Unit or integration tests (optional)
-│
-└── docs/                          # Additional documentation
-    ├── pipeline_overview.md
-    ├── dataset_description.md
-    └── methodology.md
-```
+└── entry_point/                         
