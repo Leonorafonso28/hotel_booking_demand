@@ -1,4 +1,4 @@
-# **Hotel Booking Demand
+# **Hotel Booking Demand**
 
 ## **Folder structure**
 
