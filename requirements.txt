@@ -1,0 +1,10 @@
+# Hotel Booking Project
+# Pinned to versions tested with the notebook (any compatible newer version should also work)
+
+numpy>=1.26
+pandas>=2.0
+scikit-learn>=1.4
+matplotlib>=3.7
+seaborn>=0.13
+jupyter>=1.0
+nbformat>=5.9
