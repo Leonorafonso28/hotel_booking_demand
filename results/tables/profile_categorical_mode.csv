@@ -1,0 +1,5 @@
+cluster_kmeans,market_segment,reserved_room_type,meal,customer_type,deposit_type,country,arrival_date_month
+0,Online TA,A,BB,Transient,No Deposit,PRT,August
+1,Offline TA/TO,A,BB,Transient,No Deposit,PRT,May
+2,Groups,A,BB,Transient,Non Refund,PRT,September
+3,Online TA,A,BB,Transient,No Deposit,PRT,August

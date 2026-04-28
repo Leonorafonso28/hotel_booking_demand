@@ -1,0 +1,36 @@
+variable,role,rationale
+hotel,profile,binary outcome-related metadata; profile only
+is_canceled,exclude,outcome variable; not available at index time
+reservation_status,exclude,post-event status
+reservation_status_date,exclude,post-event date
+agent,exclude,"id-like high-cardinality (~3,000+ values within TA/TO)"
+company,exclude,id-like high-cardinality and very sparse
+assigned_room_type,exclude,assigned by the hotel after booking; post-decision
+booking_changes,profile,modified after the booking is recorded → not a clustering input under booking-time index (Correction #2)
+days_in_waiting_list,exclude,updated by hotel operations after booking
+lead_time,input,days between booking and arrival; right-skewed → log1p then StandardScaler
+total_nights,input,engineered = stays_in_week_nights + stays_in_weekend_nights
+weekend_share,input,"engineered = stays_in_weekend_nights / total_nights ∈ [0,1]"
+party_size,input,engineered = adults + children + babies
+previous_cancellations,input,"past relationship signal; capped, log1p, StandardScaler"
+previous_bookings_not_canceled,input,"past relationship signal; capped, log1p, StandardScaler"
+required_car_parking_spaces,input,"count; capped, StandardScaler"
+total_of_special_requests,input,"count; capped, StandardScaler"
+is_repeated_guest,input,"binary {0,1}; kept as-is (no scaling)"
+market_segment,input,commercial intermediary type within TA/TO; one-hot after rare-grouping (used in MAIN representation R0)
+distribution_channel,profile,"== ""TA/TO"" by definition of the sub-population (constant). Reassessed in R0-alt sensitivity (Correction #4)."
+reserved_room_type,input,intended room category at booking; one-hot after rare-grouping
+meal,input,meal package booked; one-hot after rare-grouping
+customer_type,input,transient / contract / group / transient-party; one-hot
+deposit_type,input,no_deposit / non_refund / refundable; one-hot
+country,input,"origin geography; rare grouping with min-frequency 1% + ""Other"""
+arrival_date_month,input,seasonality; one-hot (cyclic encoding considered in robustness)
+arrival_date_year,exclude,"covers only 2015-2017; year would split clusters by data span, not behaviour"
+arrival_date_week_number,exclude,redundant with arrival_date_month at this granularity
+arrival_date_day_of_month,exclude,fine granularity adds noise; not justified for behavioural segmentation
+stays_in_week_nights,exclude,absorbed into engineered total_nights / weekend_share
+stays_in_weekend_nights,exclude,absorbed into engineered total_nights / weekend_share
+adults,exclude,absorbed into engineered party_size
+children,exclude,absorbed into engineered party_size
+babies,exclude,absorbed into engineered party_size
+adr,profile,"price/revenue. EXCLUDED from MAIN representation (Correction #3, default behavioural). USED in withADR sensitivity comparison (R2) and in post-hoc profiling."
