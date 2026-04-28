@@ -1,0 +1,5 @@
+,lead_time,lead_time,lead_time,previous_cancellations,previous_cancellations,previous_cancellations,previous_bookings_not_canceled,previous_bookings_not_canceled,previous_bookings_not_canceled,total_nights,total_nights,total_nights,weekend_share,weekend_share,weekend_share,party_size,party_size,party_size,required_car_parking_spaces,required_car_parking_spaces,required_car_parking_spaces,total_of_special_requests,total_of_special_requests,total_of_special_requests,is_repeated_guest,is_repeated_guest,is_repeated_guest
+,mean,median,std,mean,median,std,mean,median,std,mean,median,std,mean,median,std,mean,median,std,mean,median,std,mean,median,std,mean,median,std
+cluster_ward,,,,,,,,,,,,,,,,,,,,,,,,,,,
+0,118.289,87.0,109.538,0.084,0.0,0.802,0.0,0.0,0.018,3.556,3.0,2.511,0.258,0.25,0.272,2.002,2.0,0.633,0.0,0.0,0.0,0.582,0.0,0.788,0.007,0.0,0.083
+1,60.015,26.0,74.706,0.078,0.0,0.873,0.401,0.0,1.694,3.176,3.0,2.365,0.263,0.25,0.308,2.106,2.0,0.735,0.87,1.0,0.351,0.972,1.0,0.846,0.119,0.0,0.324
