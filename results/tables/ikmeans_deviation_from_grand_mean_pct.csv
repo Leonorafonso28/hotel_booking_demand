@@ -1,0 +1,5 @@
+cluster_ikmeans,lead_time,previous_cancellations,previous_bookings_not_canceled,total_nights,weekend_share,party_size,required_car_parking_spaces,total_of_special_requests,is_repeated_guest
+0,91.5,1684.7,,-21.6,-9.3,-7.0,-100.0,-78.6,448.2
+1,-45.6,-98.8,,-6.0,3.3,8.9,2082.9,60.2,122.8
+2,11.9,-100.0,,-7.9,-3.9,-11.7,-100.0,-81.3,-30.9
+3,-23.2,-100.0,,14.0,5.9,15.0,-100.0,109.4,-38.5

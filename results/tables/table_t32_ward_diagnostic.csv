@@ -1,0 +1,2 @@
+diagnostic,subsample_n,seed,linkage,metric,representation,k_range_tested,k_dendro_gap,BEST_K_WARD,cut_distance,gap_size,selection_rule
+Ward Dendrogram + Merge-Distance Profile,10000,12345,ward,euclidean,R0-standard-noLog-noADR-marketSegment-countryRare1pct,2–6,4,2,140.6876,14.5165,Silhouette argmax (primary) + dendrogram gap (confirmatory) + parsimony tiebreak

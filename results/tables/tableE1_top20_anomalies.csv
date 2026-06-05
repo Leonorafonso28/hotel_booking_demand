@@ -1,0 +1,21 @@
+rank,original_df_idx,anomaly_score,raw_centroid_dist,cluster_km,anomaly_type,lead_time,total_nights,party_size,total_of_special_requests,required_car_parking_spaces,previous_cancellations,previous_bookings_not_canceled,is_repeated_guest,market_segment,customer_type,deposit_type,reserved_room_type,meal,country,is_canceled,adr,hotel,booking_changes
+1,2164,13.028,37.251,2,data-quality,361,7,26.0,0,0,0,0,0,Offline TA/TO,Other,No Deposit,A,BB,PRT,1,0.0,Resort Hotel,0
+2,2003,13.027,37.247,2,data-quality,354,7,26.0,0,0,0,0,0,Offline TA/TO,Other,No Deposit,A,BB,PRT,1,0.0,Resort Hotel,0
+3,1884,13.025,37.243,2,data-quality,347,7,26.0,0,0,0,0,0,Offline TA/TO,Other,No Deposit,A,BB,PRT,1,0.0,Resort Hotel,0
+4,1752,13.024,37.239,2,data-quality,340,7,26.0,0,0,0,0,0,Offline TA/TO,Other,No Deposit,A,BB,PRT,1,0.0,Resort Hotel,0
+5,1587,13.023,37.235,2,data-quality,333,7,26.0,0,0,0,0,0,Offline TA/TO,Other,No Deposit,A,BB,PRT,1,0.0,Resort Hotel,0
+6,9839,7.348,21.009,2,rare-but-plausible,322,56,2.0,0,0,0,0,0,Offline TA/TO,Transient,No Deposit,A,BB,PRT,1,25.5,Resort Hotel,0
+7,33924,7.296,20.862,2,rare-but-plausible,71,56,2.0,0,0,0,0,0,Online TA,Transient,No Deposit,A,BB,GBR,0,28.79,Resort Hotel,0
+8,54704,6.201,17.729,2,rare-but-plausible,206,48,2.0,1,0,0,0,0,Online TA,Transient-Party,No Deposit,A,SC,PRT,0,0.0,City Hotel,6
+9,1655,5.901,16.874,2,rare-but-plausible,30,46,2.0,1,0,0,0,0,Online TA,Transient,No Deposit,A,SC,ESP,0,0.0,Resort Hotel,17
+10,328,5.546,15.859,2,data-quality,55,14,12.0,1,0,0,0,0,Offline TA/TO,Contract,No Deposit,D,BB,PRT,1,133.16,Resort Hotel,2
+11,3850,5.398,15.434,2,rare-but-plausible,214,42,2.0,0,0,0,0,0,Offline TA/TO,Transient,No Deposit,D,BB,GBR,0,31.45,Resort Hotel,0
+12,34898,5.387,15.402,2,rare-but-plausible,150,42,2.0,2,0,0,0,0,Offline TA/TO,Contract,No Deposit,D,BB,GBR,0,39.41,Resort Hotel,0
+13,34614,5.379,15.381,2,rare-but-plausible,242,42,2.0,1,0,0,0,0,Offline TA/TO,Transient,No Deposit,D,BB,DEU,0,35.7,Resort Hotel,0
+14,3820,5.376,15.371,2,rare-but-plausible,122,42,2.0,0,0,0,0,0,Offline TA/TO,Transient,No Deposit,A,BB,PRT,1,22.11,Resort Hotel,0
+15,46619,5.353,15.306,2,data-quality,37,2,12.0,1,0,0,0,0,Online TA,Transient,No Deposit,D,BB,PRT,0,84.45,City Hotel,1
+16,35059,4.872,13.93,2,rare-but-plausible,80,38,2.0,0,0,0,0,0,Groups,Transient-Party,No Deposit,D,SC,GBR,0,0.26,Resort Hotel,10
+17,20835,4.511,12.899,2,rare-but-plausible,92,35,1.0,0,0,0,0,0,Offline TA/TO,Contract,No Deposit,A,HB,GBR,0,36.93,Resort Hotel,0
+18,31404,4.461,12.756,2,rare-but-plausible,148,35,1.0,1,0,0,0,0,Offline TA/TO,Transient,No Deposit,A,HB,DEU,0,41.98,Resort Hotel,0
+19,33234,4.428,12.661,2,rare-but-plausible,192,35,2.0,0,0,0,0,0,Offline TA/TO,Transient,No Deposit,A,BB,GBR,0,34.0,Resort Hotel,0
+20,32946,4.401,12.584,2,rare-but-plausible,140,35,2.0,1,0,0,0,0,Offline TA/TO,Transient,No Deposit,E,BB,DEU,0,45.0,Resort Hotel,0

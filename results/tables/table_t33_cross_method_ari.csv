@@ -1,0 +1,4 @@
+Method A,Method B,ARI
+K-Means,iK-Means,0.9937
+K-Means,Ward,0.1549
+iK-Means,Ward,0.1548

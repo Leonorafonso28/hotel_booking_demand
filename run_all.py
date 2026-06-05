@@ -23,7 +23,7 @@ TBL_DIR    = ROOT / "tables"
 EXP_CSV    = ROOT / "experiments.csv"
 
 DATASET      = DATA_DIR / "hotel_bookings.csv"
-EXPECTED_MD5 = "8388523d9b568014188662c5721dee2b"   # course release v1
+EXPECTED_MD5 = "5bf588c5a949443e021fb7c847d31b27"   # Kaggle current version
 
 NOTEBOOKS = [
     "ANS_Task1.ipynb",      # EDA, R0 representation, k-means + iK-means
@@ -73,7 +73,7 @@ def execute_notebook(nb_name: str) -> None:
     print(f"\n-> Running {nb_name} ...")
     try:
         subprocess.run(
-            ["jupyter", "nbconvert", "--to", "notebook",
+            [sys.executable, "-m", "jupyter", "nbconvert", "--to", "notebook",
              "--execute", "--inplace", str(nb_path)],
             check=True,
         )

@@ -1,0 +1,7 @@
+Feature,Grand Mode,Cluster 0,Cluster 1,Cluster 2,Cluster 3
+market_segment,Online TA,Online TA  (84%),Offline TA/TO  (38%),Online TA  (91%),Groups  (58%)
+reserved_room_type,A,A  (54%),A  (86%),A  (56%),A  (96%)
+meal,BB,BB  (81%),BB  (73%),BB  (76%),BB  (82%)
+customer_type,Transient,Transient  (87%),Transient  (65%),Transient  (89%),Transient  (50%)
+deposit_type,No Deposit,No Deposit  (100%),No Deposit  (79%),No Deposit  (100%),Non Refund  (63%)
+arrival_date_month,August,August  (14%),May  (12%),August  (15%),September  (20%)

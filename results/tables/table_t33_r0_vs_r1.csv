@@ -1,0 +1,3 @@
+Representation,Scaler,Log transform,Silhouette,Calinski-Harabasz,Davies-Bouldin,ARI vs R0
+R0 (StandardScaler),StandardScaler,No,0.1403,12956.3,1.9212,1.0
+R1 (RobustScaler),RobustScaler,No,0.1262,11931.4,2.2232,0.1756

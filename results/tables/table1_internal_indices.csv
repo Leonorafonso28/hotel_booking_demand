@@ -1,0 +1,4 @@
+Method,K,Silhouette ↑,Calinski–Harabasz ↑,Davies–Bouldin ↓,Time (s)
+K-Means,4,0.1403,12956.269,1.9212,1.018
+iK-Means,4,0.1403,12956.1,1.9219,1.042
+Ward,2,0.3184,11961.4721,1.1512,1.137
