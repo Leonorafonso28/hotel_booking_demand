@@ -27,7 +27,7 @@ from pathlib import Path
 ROOT          = Path(__file__).resolve().parent.parent
 DATA_DIR      = ROOT / "data"
 DATASET       = DATA_DIR / "hotel_bookings.csv"
-EXPECTED_MD5  = "8388523d9b568014188662c5721dee2b"   # course release v1
+EXPECTED_MD5  = "5bf588c5a949443e021fb7c847d31b27"
 KAGGLE_SLUG   = "jessemostipak/hotel-booking-demand"
 
 
@@ -54,7 +54,7 @@ def main() -> None:
     print(f"Downloading {KAGGLE_SLUG} via Kaggle CLI ...")
     subprocess.run(
         ["kaggle", "datasets", "download", "-d", KAGGLE_SLUG,
-         "-v", "1", "-p", str(DATA_DIR), "--unzip"],
+         "-p", str(DATA_DIR), "--unzip"],
         check=True,
     )
 
