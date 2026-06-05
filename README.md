@@ -1,4 +1,4 @@
-# Hotel Booking Demand
+# Hotel Booking Demand — Reproducible Clustering Study
 
 Unsupervised Learning project (2025/2026). A reproducible experimental study of
 clustering on the *Hotel Booking Demand* dataset.
@@ -32,7 +32,7 @@ clustering on the *Hotel Booking Demand* dataset.
   demand datasets.* Data in Brief, 22, 41–49.
   <https://doi.org/10.1016/j.dib.2018.11.126>
 - **Course release used:** v1
-- **MD5 checksum:** `8388523d9b568014188662c5721dee2b`
+- **MD5 checksum:** `5bf588c5a949443e021fb7c847d31b27`
 - **License / usage terms:** CC0 1.0 Public Domain (as stated on the Kaggle page).
 - **Unit of analysis:** one row = one booking record.
 - **Governance:** the raw CSV is **not** committed to this repository. Run
