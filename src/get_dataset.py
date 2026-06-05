@@ -54,7 +54,7 @@ def main() -> None:
     print(f"Downloading {KAGGLE_SLUG} via Kaggle CLI ...")
     subprocess.run(
         ["kaggle", "datasets", "download", "-d", KAGGLE_SLUG,
-         "-p", str(DATA_DIR), "--unzip"],
+         "-v", "1", "-p", str(DATA_DIR), "--unzip"],
         check=True,
     )
 
