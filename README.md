@@ -1,7 +1,72 @@
 # Hotel Booking Demand — Reproducible Clustering Study
 
-Unsupervised Learning project (2025/2026). A reproducible experimental study of
-clustering on the *Hotel Booking Demand* dataset.
+> Unsupervised Learning · 2025/2026 · G4P2  
+> João Lourenço (72904) · José Nunes (73137) · Leonor Afonso (73491)
+
+A reproducible experimental study of customer segmentation on the *Hotel Booking Demand* dataset. The analysis investigates whether latent behavioural groups exist among hotel bookings made through Travel Agency / Tour Operator (TA/TO) intermediaries, using 97,870 records from two Portuguese hotels (Algarve and Lisbon, 2015–2017).
+
+---
+
+## Research question
+
+> **RQ1:** Among bookings made through TA/TO intermediaries, are there latent behavioural groups — characterised jointly by booking timing, stay design, party composition, and commercial-channel metadata — that are observable at booking time?
+
+All clustering inputs are measured strictly at booking time to avoid leakage. Post-event variables (cancellation status, assigned room type, booking changes) are reserved for post-hoc profiling only.
+
+---
+
+## Key results
+
+**Selected model: K-Means, K = 4, representation R0, seed 12345.**
+
+| Method | K | Silhouette ↑ | Calinski-Harabász ↑ | Davies-Bouldin ↓ |
+|---|---|---|---|---|
+| K-Means | 4 | 0.140 | 12,956 | 1.921 |
+| iK-Means (AP-init) | 4 | 0.140 | 12,956 | 1.922 |
+| Ward | 2 | 0.318 | 11,961 | 1.151 |
+
+K-Means and iK-Means converge on the same K = 4 partition (cross-method ARI = 0.994). Ward's higher Silhouette at K = 2 is a granularity artefact: it isolates a tiny low-cancellation cluster (n = 5,175) from everyone else and hides three of the four behavioural segments below.
+
+**Seed stability (10 seeds):** K-Means pairwise ARI = 0.995 ± 0.003.  
+**Fuzzy C-Means check (m = 1.13):** ARI vs. K-Means = 0.827; 6–8% of bookings on the C1–C2 boundary carry ambiguous memberships, confirming the boundary is genuinely soft.
+
+### Cluster profiles
+
+| Cluster | N | Cancel % | City / Resort | Median ADR (€) | Label |
+|---|---|---|---|---|---|
+| C0 | 4,478 | 0.0% | 26.5 / 73.5 | 105 | Parking-equipped resort families |
+| C1 | 49,498 | 46.1% | 75.2 / 24.8 | 89 | Mainstream online transient city bookers |
+| C2 | 38,300 | 31.1% | 67.0 / 33.0 | 115 | Offline long-lead, service-heavy bookers |
+| C3 | 5,474 | 99.2% | 87.3 / 12.7 | 69 | Non-refundable group blocks |
+
+- **C0 — Committed leisure, low risk.** The only cluster with parking (+2,083% vs. grand mean), high special requests (+60%), highest repeated-guest share (+123%), shortest lead time (−46%), zero cancellations.
+- **C1 — Volume backbone, hedging needed.** Largest segment (~51%); Online TA + city hotel (75%) + No Deposit; 46% cancellation rate, median lead time +12%.
+- **C2 — Higher-touch channel, intermediate risk.** Offline TA/TO over-represented (38%), special requests +109%, highest ADR (€115), lead time −23%, 31% cancellation.
+- **C3 — Speculative overbooking signal.** Groups (58%) + Non-Refund deposit (63%); lead time +91% (median 260 days), previous cancellations +1,685%; 99.2% cancellation — a strong overbooking/forecast indicator.
+
+---
+
+## Methods
+
+Three clustering families are applied to the same 57-dimensional mixed-type feature matrix (**R0**): StandardScaler-normalised numericals stacked with one-hot encoded categoricals.
+
+| Method | Family | K selected | Rationale |
+|---|---|---|---|
+| K-Means (k-means++ init) | Partitional | 4 | Silhouette argmax + inertia elbow; parsimony rule |
+| iK-Means (AP init) | Partitional | 4 | Mirkin's Anomalous-Pattern initialisation; deterministic seeds |
+| Ward linkage | Hierarchical | 2 | Silhouette argmax + dendrogram gap; deterministic |
+| Fuzzy C-Means | Soft partition | 4 | Fuzzifier m = 1.13 on calibration grid {1.05 … 2.00} |
+
+**Sensitivity variants:**
+- **R1 (RobustScaler):** replaces StandardScaler; ARI vs. R0 = 0.18 — compresses long-tail signal in `lead_time` and `previous_cancellations`, so R0 is retained.
+- **PCA (90% EVR, 21 components):** ARI vs. R0 = 0.93 at K = 4; same cluster identities with marginal Silhouette gain (0.157 vs. 0.140). R0 retained for interpretability.
+
+**Extension analyses:**
+- **E1 — Cluster-aware anomaly detection:** top-20 most atypical bookings by centroid distance; identifies 5 data-quality errors (party_size z-score ≈ +37σ) and 15 rare-but-plausible long-stay bookings.
+- **E3 — Fuzzy C-Means:** soft-partition check with Partition Coefficient, Classification Entropy, and Xie–Beni index; confirms K = 4 and quantifies C1–C2 boundary fuzziness.
+- **E4 — PCA representation study:** scree and cumulative-variance analysis; EVR sweep from 50% to 95% shows that dropping below 90% EVR discards the categorical signal separating C1 from C2 (ARI ≈ 0.04 vs. R0 at EVR ≤ 0.80).
+
+---
 
 ## Repository structure
 
@@ -25,6 +90,19 @@ clustering on the *Hotel Booking Demand* dataset.
 └── tables/                  # regenerated by run_all
 ```
 
+### Notebook guide
+
+| Notebook | Content |
+|---|---|
+| `ANS_Task1` | Data quality audit, feature governance, R0 construction, K-Means and iK-Means across k ∈ {2…8}, k-selection, seed stability |
+| `ANS_Task2` | Ward linkage, dendrogram diagnostic, merge-distance profile, nearest-centroid propagation, bootstrap stability |
+| `ANS_Task3` | Unified internal-index comparison (Silhouette, CH, DB), R1 RobustScaler variant, cross-method ARI table, cluster profiling |
+| `ANS_Module1` | Top-20 anomaly ranking by centroid distance, DQ vs. RBP classification, z-score heatmap |
+| `ANS_Module3` | Fuzzy C-Means from scratch (AO loop), fuzzifier grid search, Partition Coefficient, Classification Entropy, Xie–Beni, membership confidence plots |
+| `ANS_Module4` | PCA scree plot, EVR sweep (50%–95%), K-Means in reduced subspace, ARI vs. R0 across thresholds |
+
+---
+
 ## Dataset
 
 - **Source:** <https://www.kaggle.com/datasets/jessemostipak/hotel-booking-demand>
@@ -46,6 +124,18 @@ conda env create -f environment.yml
 conda activate hotel-clustering
 python src/get_dataset.py     # downloads data/hotel_bookings.csv
 ```
+**Pinned versions (key packages):**
+
+| Package | Version |
+|---|---|
+| Python | 3.11 |
+| scikit-learn | 1.4 |
+| scikit-fuzzy | 0.4.2 |
+| numpy | 1.26 |
+| pandas | 2.2 |
+| matplotlib / seaborn | latest compatible |
+
+---
 
 ## Reproduce all results
 
@@ -56,3 +146,36 @@ python run_all.py             # full pipeline (regenerates figures/, tables/, ex
 `run_all.py` clears `figures/`, `tables/`, and `experiments.csv` at the start,
 then executes the six notebooks in order. Every figure and table referenced in
 the report is regenerated automatically.
+
+### Reproducibility notes
+
+- All random seeds are fixed globally at `12345` unless otherwise specified.
+- K-Means stability uses 10 predefined seeds: `[12345, 23456, 34567, 45678, 56789, 67890, 78901, 89012, 90123, 11111]`.
+- iK-Means AP procedure runs on a fixed subsample of 20,000 records (seed = 12345).
+- Ward linkage fits on a fixed subsample of 10,000 records (seed = 12345); full-dataset assignment uses nearest-centroid propagation.
+- Silhouette scores are computed on a fixed seeded subsample of 10,000 rows (O(n²) safeguard); CH and DB are computed on the full sub-population.
+
+---
+
+## Limitations
+
+- No ground-truth labels; validity is internal and post-hoc only.
+- Results are scoped to TA/TO bookings from two Portuguese properties (2015–2017); generalisation to other channels, markets, or periods is untested.
+- High-dimensional one-hot encoding caps the achievable Silhouette; mixed-type metrics (Gower distance, learned embeddings) are left as future work.
+- The C1–C2 boundary is genuinely fuzzy: a soft-classification deployment is more appropriate than hard labels for bookings near that boundary.
+
+---
+
+## Citation
+
+```bibtex
+@article{antonio2019hotel,
+  title   = {Hotel booking demand datasets},
+  author  = {Ant{\'o}nio, Nuno and de Almeida, Ana and Nunes, Luis},
+  journal = {Data in Brief},
+  volume  = {22},
+  pages   = {41--49},
+  year    = {2019},
+  doi     = {10.1016/j.dib.2018.11.126}
+}
+```
